@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppExampleRegistre</string>
+    <string name="name_record">Name</string>
+    <string name="email_record">Email</string>
+    <string name="pass_record">Password</string>
+    <string name="phone_record">Phone</string>
+    <string name="bt_empty">Registre Form</string>
+    <string name="age_record">Age</string>
+</resources>
