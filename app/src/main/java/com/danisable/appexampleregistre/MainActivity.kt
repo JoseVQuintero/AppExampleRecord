@@ -1,15 +1,12 @@
 package com.danisable.appexampleregistre
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.get
-import androidx.core.view.isEmpty
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import android.util.Log.e as e1
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,21 +15,32 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
         btEmpty.setOnClickListener(this)
         btAge.setOnClickListener(this)
+        btShowData.setOnClickListener(this)
+        btNewActivity.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
+            R.id.btNewActivity -> {
+                startActivity(Intent(this,MainActivityRules::class.java))
+            }
             R.id.btShowData -> {
-                val name  = etName.text
-                var pass  = etPass.text
-                var email  = etEmail.text
-                var phone  = etPhone.text
+                val name  = etName.text.toString()
+                val pass  = etPass.text.toString()
+                val email  = etEmail.text.toString()
+                val phone  = etPhone.text.toString()
                 Log.e("TAG", "Name: $name, Pass: $pass, Email: $email, Phone: $phone")
             }
             R.id.btAge -> {
-                var age  = etAge.text.toString().toInt()
-                if(age > 18){
-                    Toast.makeText(this,  "Es mayor de Edad", Toast.LENGTH_SHORT).show()
+                if(etAge.text.toString().isNotEmpty()) {
+                    var age = etAge.text.toString().toInt()
+                    if (age >= 18) {
+                        Toast.makeText(this, "Es mayor de Edad", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Es menor de Edad", Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    etAge.error = "Empty"
                 }
             }
             R.id.btEmpty -> {
